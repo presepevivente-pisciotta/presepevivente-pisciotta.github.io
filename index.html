@@ -10,7 +10,7 @@
   <!-- Anteprima quando il link viene condiviso su WhatsApp, Facebook, ecc. -->
   <meta property="og:title" content="Presepe Vivente di Pisciotta">
   <meta property="og:description" content="Un viaggio nel tempo tra pastori, antichi mestieri e canti. Ingresso gratuito: prenota il tuo turno.">
-  <meta property="og:image" content="https://presepevivente-pisciotta.github.io/manifesto.jpg">
+  <meta property="og:image" content="https://presepevivente-pisciotta.github.io/scena-02.jpg">
   <meta property="og:url" content="https://presepevivente-pisciotta.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="it_IT">
@@ -94,9 +94,9 @@
     .pulsante-oro:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(227, 181, 92, .5); }
     .pulsante-vuoto { color: #fff; border: 1px solid rgba(255,255,255,.35); }
     .pulsante-vuoto:hover { border-color: var(--oro); color: var(--oro-chiaro); }
-    .pulsante.in-attesa { background: rgba(255,255,255,.12); color: #e7dfd0; box-shadow: none; cursor: default; }
+    .pulsante.in-attesa { background: rgba(227,181,92,.14); border: 1px solid rgba(227,181,92,.65); color: var(--oro-chiaro); box-shadow: none; cursor: default; }
     .pulsante.in-attesa:hover { transform: none; }
-    section:not(.scura):not(.hero) .pulsante.in-attesa { background: var(--crema-2); color: var(--testo-2); }
+    section:not(.scura):not(.hero) .pulsante.in-attesa { background: var(--crema-2); color: var(--testo-2); border-color: transparent; }
 
     /* ---------- Barra di navigazione ---------- */
     .barra {
@@ -124,12 +124,13 @@
       background: radial-gradient(ellipse 120% 80% at 55% 0%, #233258 0%, #121c38 45%, #0a1124 100%);
       color: #fff; display: flex; flex-direction: column; align-items: center;
     }
-    #cielo, #scena { position: absolute; inset: 0; width: 100%; height: 100%; }
+    #cielo { position: absolute; inset: 0; width: 100%; height: 100%; }
+    #scena { position: relative; display: block; order: 2; width: 100%; flex: 1 0 190px; min-height: 0; height: 0; max-height: min(560px, 88vw); margin-top: auto; }
     #cometa { position: absolute; z-index: 1; top: 2vh; left: calc(50% + 170px); width: 380px; height: 190px; overflow: visible; }
     @media (max-width: 700px) { #cometa { top: 8px; left: auto; right: -40px; width: 200px; height: 100px; } }
     .hero-contenuto {
       position: relative; z-index: 2; text-align: center;
-      padding: clamp(80px, 11vh, 124px) 20px 0;
+      padding: clamp(56px, 8vh, 100px) 20px 0;
       max-width: 900px;
     }
     .hero .sopra {
@@ -142,15 +143,12 @@
       text-shadow: 0 4px 40px rgba(0,0,0,.5);
     }
     .hero h1 em { display: block; font-style: italic; font-weight: 500; color: var(--oro-chiaro); font-size: .5em; margin-top: 8px; letter-spacing: .01em; }
-    .hero .motto { font-size: clamp(1rem, 2.4vw, 1.18rem); color: #d9d1c3; margin: 16px auto 24px; max-width: 540px; text-shadow: 0 2px 12px rgba(0,0,0,.6); }
-    .pillole { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 24px; }
-    .pillola {
-      display: inline-block; padding: 7px 20px; border-radius: 999px;
-      border: 1px solid rgba(227, 181, 92, .55); color: var(--oro-chiaro);
-      font-weight: 600; letter-spacing: .03em; background: rgba(12, 20, 41, .35);
-    }
-    .pillola.gratis { background: rgba(227, 181, 92, .16); }
-    .hero .azioni { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+    
+    .info-hero { margin: 22px 0 22px; }
+    .info-hero .quando { display: block; font-family: var(--serif); font-size: clamp(1.45rem, 3.6vw, 1.8rem); font-weight: 600; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.6); }
+    .info-hero .gratis { display: inline-flex; align-items: center; gap: 10px; margin-top: 6px; font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; color: var(--oro-chiaro); }
+    .info-hero .gratis::before, .info-hero .gratis::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .6; }
+    .hero .azioni { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 28px; }
 
     .scorri {
       position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); z-index: 2;
@@ -184,7 +182,7 @@
     .cornice {
       position: relative; padding: 14px; background: #fff;
       border-radius: 6px; box-shadow: 0 30px 60px rgba(12, 20, 41, .25), 0 0 0 1px rgba(169, 122, 36, .25);
-      transform: rotate(1.2deg); transition: transform .5s; margin: 0;
+      transform: rotate(-1deg); transition: transform .5s; margin: 0;
     }
     .cornice:hover { transform: rotate(0) scale(1.01); }
     .cornice::before {
@@ -194,6 +192,7 @@
     }
     .cornice img { border-radius: 2px; width: 100%; }
     .cornice figcaption { text-align: center; font-family: var(--serif); font-style: italic; color: var(--testo-2); padding-top: 10px; font-size: 1.05rem; }
+    .cornice figcaption small { display: block; font-family: var(--sans); font-style: normal; font-size: .72rem; color: #a39a8c; }
 
     @media (max-width: 860px) {
       .benvenuto .griglia { grid-template-columns: 1fr; }
@@ -248,7 +247,7 @@
 
     /* ---------- Date e turni ---------- */
 
-    .serate { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 40px; }
+    .serate { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 300px)); justify-content: center; gap: 18px; margin-bottom: 40px; }
     .serata {
       background: #fff; border-radius: var(--raggio); padding: 28px 22px; text-align: center;
       box-shadow: var(--ombra); border-top: 3px solid var(--oro);
@@ -306,13 +305,45 @@
     .disdetta svg { flex: none; color: var(--oro-scuro); }
 
 
-    /* ---------- Galleria del borgo ---------- */
-    .galleria { display: grid; gap: 12px; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; }
-    .galleria figure { margin: 0; overflow: hidden; border-radius: 12px; position: relative; }
-    .galleria figure:first-child:not(:only-child) { grid-column: span 2; grid-row: span 2; }
-    .galleria img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; }
-    .galleria figure:hover img { transform: scale(1.05); }
-    @media (max-width: 760px) { .galleria { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; } }
+    /* ---------- Mosaico di foto nella sezione "Scopri il presepe" ---------- */
+    .mosaico {
+      display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); grid-auto-rows: clamp(92px, 11vw, 140px);
+    }
+    .mosaico figure { margin: 0; position: relative; overflow: hidden; border-radius: 10px; background: var(--notte); box-shadow: 0 8px 22px rgba(12,20,41,.18); }
+    .mosaico figure:first-child { grid-column: span 2; grid-row: span 2; }
+    .mosaico button { all: unset; display: block; width: 100%; height: 100%; cursor: zoom-in; }
+    .mosaico button:focus-visible { outline: 2px solid var(--oro); outline-offset: -2px; }
+    .mosaico img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+    .mosaico figure:first-child img { object-position: center 30%; }
+    .mosaico figure:hover img { transform: scale(1.06); }
+    .mosaico figcaption {
+      position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 10px 7px; pointer-events: none;
+      background: linear-gradient(transparent, rgba(6, 11, 25, .85));
+      color: #f3ead8; font-family: var(--serif); font-style: italic; font-size: 1rem;
+      opacity: 0; transition: opacity .35s;
+    }
+    .mosaico figure:hover figcaption { opacity: 1; }
+    @media (hover: none) { .mosaico figure:first-child figcaption { opacity: 1; } }
+    .benvenuto .credito { text-align: right; margin: 10px 2px 0; font-size: .76rem; color: #a39a8c; }
+
+    /* Foto a schermo intero */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center;
+      background: rgba(4, 7, 16, .94); padding: 56px 12px 70px;
+    }
+    .lightbox.aperta { display: flex; }
+    .lightbox img { max-width: min(1400px, 100%); max-height: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+    .lightbox .didascalia { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; color: #e7dfd0; font-family: var(--serif); font-style: italic; font-size: 1.2rem; }
+    .lightbox .didascalia small { display: block; font-family: var(--sans); font-style: normal; font-size: .72rem; color: #8f8a80; margin-top: 2px; }
+    .lightbox button {
+      position: absolute; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); color: #fff;
+      width: 46px; height: 46px; border-radius: 50%; font-size: 1.5rem; line-height: 1; cursor: pointer; display: grid; place-items: center;
+    }
+    .lightbox button:hover { background: rgba(227,181,92,.25); border-color: var(--oro); }
+    .lightbox .chiudi { top: 12px; right: 12px; }
+    .lightbox .prec { left: 12px; top: 50%; transform: translateY(-50%); }
+    .lightbox .succ { right: 12px; top: 50%; transform: translateY(-50%); }
+    @media (max-width: 560px) { .lightbox .prec, .lightbox .succ { top: auto; bottom: 14px; transform: none; } .lightbox .didascalia { bottom: 70px; } }
 
     /* ---------- Domande frequenti ---------- */
     .domande details {
@@ -427,8 +458,8 @@
     // Link dell'evento su Ticket Tailor. Finché è vuoto, i pulsanti mostrano "Prenotazioni aperte a breve".
     linkPrenotazione: "",
 
-    // Le serate, nel formato ANNO-MESE-GIORNO. Esempio: ["2026-12-26", "2026-12-27", "2026-12-28"]
-    date: [],
+    // Le serate, nel formato ANNO-MESE-GIORNO. Esempio: ["2026-12-27", "2026-12-28"]
+    date: ["2026-12-27", "2026-12-28"],
 
     primaPartenza: "17:00",   // orario del primo turno
     ultimaPartenza: "21:00",  // orario dell'ultimo turno
@@ -443,12 +474,12 @@
   // (non modificare) Nasconde le foto della galleria che non sono state caricate
   function fotoMancante(img) {
     const fig = img.closest('figure');
-    if (fig) fig.remove();
+    if (fig) { const prima = fig.previousSibling; if (prima && prima.nodeType === 8) prima.remove(); fig.remove(); }
     controllaGalleria();
   }
   function controllaGalleria() {
     const g = document.getElementById('galleria');
-    if (g && g.children.length === 0) document.getElementById('borgo').remove();
+    if (g && g.children.length === 0) g.closest('.mosaico-box').remove();
   }
 </script>
 
@@ -459,9 +490,10 @@
       Presepe Vivente
     </a>
     <nav>
-      <a href="#percorso">Il percorso</a>
-      <a href="#date">Date e orari</a>
       <a href="#prenota">Come prenotare</a>
+      <a href="#date">Date e orari</a>
+      <a href="#arrivare">Punto di ritrovo</a>
+      <a href="#percorso">Il percorso</a>
       <a href="#domande">Domande</a>
       <a class="pulsante pulsante-oro js-prenota" href="#prenota"><span class="js-etichetta">Prenota</span></a>
     </nav>
@@ -471,7 +503,7 @@
   <section class="hero" id="inizio">
     <canvas id="cielo" aria-hidden="true"></canvas>
     <!-- Pisciotta di notte viene disegnata qui dallo script in fondo alla pagina -->
-    <svg id="scena" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+    <svg id="scena" viewBox="0 520 1440 380" preserveAspectRatio="xMidYMax slice" overflow="visible" aria-hidden="true"></svg>
     <svg id="cometa" viewBox="0 0 400 200" aria-hidden="true">
       <defs>
         <radialGradient id="g-luna"><stop offset="0" stop-color="#fff6dc" stop-opacity=".9"/><stop offset=".25" stop-color="#f3d08a" stop-opacity=".45"/><stop offset="1" stop-color="#f3d08a" stop-opacity="0"/></radialGradient>
@@ -486,25 +518,109 @@
     <div class="hero-contenuto">
       <p class="sopra">Pisciotta · Natale 2026</p>
       <h1>Presepe Vivente<em>Cchi prisepi sta Pisciotta</em></h1>
-      <p class="motto">Un viaggio nel tempo tra pastori, antichi mestieri e canti, fino alla grotta della Natività.</p>
-      <div class="pillole">
-        <span class="pillola" id="date-copertina">Date in arrivo</span>
-        <span class="pillola gratis">Ingresso gratuito</span>
-      </div>
+      <p class="info-hero">
+        <span class="quando" id="date-copertina">Date in arrivo</span>
+        <span class="gratis">Ingresso gratuito</span>
+      </p>
       <div class="azioni">
         <a class="pulsante pulsante-oro js-prenota" href="#prenota"><span class="js-etichetta">Prenota il tuo turno</span></a>
       </div>
     </div>
-    <a class="scorri" href="#benvenuto" aria-label="Scorri verso il basso"></a>
+    <a class="scorri" href="#prenota" aria-label="Scorri verso il basso"></a>
   </section>
 
   <main>
 
-    <!-- ===================== BENVENUTO + MANIFESTO ===================== -->
-    <section class="benvenuto" id="benvenuto">
+    <!-- ===================== COME PRENOTARE ===================== -->
+    <section id="prenota" style="background: var(--crema-2);">
+      <div class="contenitore">
+        <div class="centrato appare">
+          <p class="occhiello">Prenotazioni</p>
+          <h2 class="titolo-sezione">Prenotare è semplice e gratuito</h2>
+          <p class="intro-sezione">L'ingresso è gratuito: prenotare serve solo a riservare il tuo posto nel turno che preferisci.</p>
+        </div>
+
+        <div class="passi">
+          <div class="passo appare"><h3>Scegli il turno</h3><p>Seleziona la serata e l'orario che preferisci: vedi subito quanti posti sono ancora liberi.</p></div>
+          <div class="passo appare"><h3>Inserisci i dati</h3><p>Nome, email e numero di persone del tuo gruppo. Non serve registrarsi.</p></div>
+          <div class="passo appare"><h3>Ricevi la conferma</h3><p>Ti arriva un'email con la prenotazione e le istruzioni: mostrala dal telefono all'ingresso.</p></div>
+        </div>
+
+        <div class="avviso appare">
+          <div class="icona" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>
+          </div>
+          <div>
+            <h3>Arriva con un po' di anticipo</h3>
+            <p>
+              Presentati in <strong>Piazza Raffaele Pinto almeno <span data-cfg="minutiAnticipo">15</span> minuti prima</strong>
+              dell'orario prenotato.
+            </p>
+            <p>
+              I turni partono puntuali: se all'orario del tuo turno non sei presente, <strong>perdi la priorità
+              della prenotazione</strong> e potrai entrare solo mettendoti in coda con chi arriva senza prenotare.
+            </p>
+          </div>
+        </div>
+
+        <div class="disdetta appare">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <p><strong>Non puoi più venire?</strong> Disdici dal link che trovi nell'email di conferma: libererai il posto per un'altra famiglia.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DATE E TURNI ===================== -->
+    <section id="date">
+      <div class="contenitore">
+        <div class="centrato appare">
+          <p class="occhiello">Calendario</p>
+          <h2 class="titolo-sezione" style="margin-bottom: 40px;">Date e orari</h2>
+        </div>
+
+        <!-- Le schede delle serate vengono create dallo script con le date della CONFIGURAZIONE -->
+        <div class="serate appare" id="serate">
+          <div class="serata vuota"><div class="giorno-sett">Presto</div><div class="giorno">Date in arrivo</div></div>
+        </div>
+
+        <div class="turni-box appare">
+          <div>
+            <h3>Orari di partenza</h3>
+            <p>Un turno ogni <span data-cfg="minutiTraTurni">30</span> minuti, uguale per tutte le serate.</p>
+          </div>
+          <div class="turni" id="turni"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== COME ARRIVARE ===================== -->
+    <section class="scura arrivare" id="arrivare">
       <div class="contenitore griglia">
         <div class="appare">
-          <p class="occhiello">Benvenuti</p>
+          <p class="occhiello">Come arrivare</p>
+          <h2 class="titolo-sezione">Ci vediamo in piazza</h2>
+          <p class="intro-sezione" style="margin-bottom: 0;">
+            Tutti i turni partono da Piazza Raffaele Pinto. Arriva con qualche minuto di anticipo:
+            da lì inizia il viaggio nella Betlemme di Pisciotta.
+          </p>
+        </div>
+        <div class="ritrovo appare">
+          <div class="etichetta">Punto di ritrovo</div>
+          <h3>Piazza Raffaele Pinto</h3>
+          <p>Pisciotta (SA) · presentati almeno <span data-cfg="minutiAnticipo">15</span> minuti prima del tuo turno.</p>
+          <a class="pulsante pulsante-oro" href="https://www.google.com/maps/search/?api=1&query=Piazza+Raffaele+Pinto%2C+Pisciotta+SA" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Apri in Google Maps
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== IL PRESEPE (presentazione) ===================== -->
+    <section class="benvenuto" id="presepe">
+      <div class="contenitore griglia">
+        <div class="appare">
+          <p class="occhiello">Scopri il presepe</p>
           <h2 class="titolo-sezione">Una notte a Betlemme</h2>
           <p>
             Tra i vicoli, le scalinate e le piazzette del centro storico, Pisciotta torna indietro
@@ -517,12 +633,12 @@
           </p>
           <ul class="punti">
             <li>
-              <div class="icona" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-6Z"/><path d="M13 5v2M13 11v2M13 17v2"/></svg></div>
-              <div><strong>Ingresso gratuito</strong><span>Basta prenotare il proprio turno</span></div>
-            </li>
-            <li>
               <div class="icona" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
               <div><strong>Un racconto cantato</strong><span>La storia della Natività prende vita in musica</span></div>
+            </li>
+            <li>
+              <div class="icona" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 4 6 6-9.5 9.5a2.1 2.1 0 0 1-3-3Z"/><path d="m3 21 4-4M13 5l-2-2"/></svg></div>
+              <div><strong>Gli antichi mestieri</strong><span>Fabbri, fornai, cestai e calzolai nelle botteghe del borgo</span></div>
             </li>
             <li>
               <div class="icona" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2v8a2 2 0 0 0 4 0V2M9 2v20M17 22V2c-2.2 0-4 2.5-4 6s1.8 5 4 5"/></svg></div>
@@ -531,11 +647,19 @@
           </ul>
         </div>
 
-        <!-- Immagine del manifesto: file manifesto.jpg nel repository -->
-        <figure class="cornice appare" id="manifesto">
-          <img src="manifesto.jpg" alt="Manifesto ufficiale del Presepe Vivente di Pisciotta" onerror="this.closest('figure').remove()">
-          <figcaption>Il manifesto ufficiale</figcaption>
-        </figure>
+        <!-- Mosaico di foto dello scorso anno. Toccando una foto si apre a schermo intero.
+             MODIFICA: per cambiare una foto sostituite il file; la didascalia è il testo in <figcaption>. -->
+        <div class="mosaico-box appare">
+          <div class="mosaico" id="galleria">
+            <figure><button type="button"><img src="scena-01.jpg" alt="La Sacra Famiglia accanto alla mangiatoia" loading="lazy" onerror="fotoMancante(this)"></button><figcaption>La Natività</figcaption></figure>
+            <figure><button type="button"><img src="scena-02.jpg" alt="I tre Re Magi seduti in un androne con le tende rosse" loading="lazy" onerror="fotoMancante(this)"></button><figcaption>I Re Magi</figcaption></figure>
+            <figure><button type="button"><img src="scena-04.jpg" alt="I fornai con la pala e i cesti di pane e taralli" loading="lazy" onerror="fotoMancante(this)"></button><figcaption>I fornai</figcaption></figure>
+            <figure><button type="button"><img src="scena-06.jpg" alt="Due figuranti intrecciano cesti sotto l'insegna Fonzo u cufanaro" loading="lazy" onerror="fotoMancante(this)"></button><figcaption>U cufanaro</figcaption></figure>
+            <figure><button type="button"><img src="scena-07.jpg" alt="Il calzolaio al lavoro davanti alla bottega piena di scarpe" loading="lazy" onerror="fotoMancante(this)"></button><figcaption>Il calzolaio</figcaption></figure>
+            <figure><button type="button"><img src="scena-03.jpg" alt="Il fabbro accanto alla forgia accesa in un vicolo" loading="lazy" onerror="fotoMancante(this)"></button><figcaption>Il fabbro</figcaption></figure>
+          </div>
+          <p class="credito">Edizione 2025 · Foto di Domenico Laviano</p>
+        </div>
       </div>
     </section>
 
@@ -589,87 +713,13 @@
       </div>
     </section>
 
-    <!-- ===================== DATE E TURNI ===================== -->
-    <section id="date">
-      <div class="contenitore">
-        <div class="centrato appare">
-          <p class="occhiello">Calendario</p>
-          <h2 class="titolo-sezione" style="margin-bottom: 40px;">Date e orari</h2>
-        </div>
-
-        <!-- Le schede delle serate vengono create dallo script con le date della CONFIGURAZIONE -->
-        <div class="serate appare" id="serate">
-          <div class="serata vuota"><div class="giorno-sett">Presto</div><div class="giorno">Date in arrivo</div></div>
-        </div>
-
-        <div class="turni-box appare">
-          <div>
-            <h3>Orari di partenza</h3>
-            <p>Un turno ogni <span data-cfg="minutiTraTurni">30</span> minuti, uguale per tutte le serate.</p>
-          </div>
-          <div class="turni" id="turni"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== COME PRENOTARE ===================== -->
-    <section id="prenota" style="background: var(--crema-2);">
-      <div class="contenitore">
-        <div class="centrato appare">
-          <p class="occhiello">Prenotazioni</p>
-          <h2 class="titolo-sezione">Prenotare è semplice e gratuito</h2>
-          <p class="intro-sezione">L'ingresso è gratuito: prenotare serve solo a riservare il tuo posto nel turno che preferisci.</p>
-        </div>
-
-        <div class="passi">
-          <div class="passo appare"><h3>Scegli il turno</h3><p>Seleziona la serata e l'orario che preferisci: vedi subito quanti posti sono ancora liberi.</p></div>
-          <div class="passo appare"><h3>Inserisci i dati</h3><p>Nome, email e numero di persone del tuo gruppo. Non serve registrarsi.</p></div>
-          <div class="passo appare"><h3>Ricevi la conferma</h3><p>Ti arriva un'email con la prenotazione e le istruzioni: mostrala dal telefono all'ingresso.</p></div>
-        </div>
-
-        <div class="avviso appare">
-          <div class="icona" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>
-          </div>
-          <div>
-            <h3>Arriva con un po' di anticipo</h3>
-            <p>
-              Presentati in <strong>Piazza Raffaele Pinto almeno <span data-cfg="minutiAnticipo">15</span> minuti prima</strong>
-              dell'orario prenotato.
-            </p>
-            <p>
-              I turni partono puntuali: se all'orario del tuo turno non sei presente, <strong>perdi la priorità
-              della prenotazione</strong> e potrai entrare solo mettendoti in coda con chi arriva senza prenotare.
-            </p>
-          </div>
-        </div>
-
-        <div class="disdetta appare">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-          <p><strong>Non puoi più venire?</strong> Disdici dal link che trovi nell'email di conferma: libererai il posto per un'altra famiglia.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== IL BORGO (galleria foto) =====================
-         Foto nel repository: foto-1.jpg ... foto-5.jpg (la foto-1 è quella grande).
-         Compaiono solo le foto presenti; se non ce n'è nessuna, la sezione si nasconde da sola. -->
-    <section class="scura" id="borgo">
-      <div class="contenitore">
-        <div class="centrato appare">
-          <p class="occhiello">Il borgo</p>
-          <h2 class="titolo-sezione">Pisciotta, sospesa sul mare</h2>
-          <p class="intro-sezione">Case di pietra arroccate sulla collina, uliveti e scalinate che scendono verso il mare: la scenografia naturale del nostro presepe.</p>
-        </div>
-        <div class="galleria appare" id="galleria">
-          <figure><img src="foto-1.jpg" alt="Pisciotta al tramonto, affacciata sul mare" onerror="fotoMancante(this)"></figure>
-          <figure><img src="foto-2.jpg" alt="Il centro storico di Pisciotta illuminato di notte" onerror="fotoMancante(this)"></figure>
-          <figure><img src="foto-3.jpg" alt="Una bicicletta fiorita con l'insegna Welcome to Pisciotta davanti al borgo" onerror="fotoMancante(this)"></figure>
-          <figure><img src="foto-4.jpg" alt="Le case colorate del centro storico" onerror="fotoMancante(this)"></figure>
-          <figure><img src="foto-5.jpg" alt="Il borgo sulla collina, circondato dal verde" onerror="fotoMancante(this)"></figure>
-        </div>
-      </div>
-    </section>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto a schermo intero">
+      <button type="button" class="chiudi" aria-label="Chiudi">×</button>
+      <button type="button" class="prec" aria-label="Foto precedente">‹</button>
+      <img alt="">
+      <button type="button" class="succ" aria-label="Foto successiva">›</button>
+      <div class="didascalia"><span></span><small>Foto di Domenico Laviano</small></div>
+    </div>
 
     <!-- ===================== DOMANDE FREQUENTI ===================== -->
     <section id="domande">
@@ -710,29 +760,6 @@
       </div>
     </section>
 
-    <!-- ===================== COME ARRIVARE ===================== -->
-    <section class="scura arrivare" id="arrivare">
-      <div class="contenitore griglia">
-        <div class="appare">
-          <p class="occhiello">Come arrivare</p>
-          <h2 class="titolo-sezione">Ci vediamo in piazza</h2>
-          <p class="intro-sezione" style="margin-bottom: 0;">
-            Tutti i turni partono da Piazza Raffaele Pinto. Arriva con qualche minuto di anticipo:
-            da lì inizia il viaggio nella Betlemme di Pisciotta.
-          </p>
-        </div>
-        <div class="ritrovo appare">
-          <div class="etichetta">Punto di ritrovo</div>
-          <h3>Piazza Raffaele Pinto</h3>
-          <p>Pisciotta (SA) · presentati almeno <span data-cfg="minutiAnticipo">15</span> minuti prima del tuo turno.</p>
-          <a class="pulsante pulsante-oro" href="https://www.google.com/maps/search/?api=1&query=Piazza+Raffaele+Pinto%2C+Pisciotta+SA" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-            Apri in Google Maps
-          </a>
-        </div>
-      </div>
-    </section>
-
   </main>
 
   <!-- ===================== PIÈ DI PAGINA ===================== -->
@@ -764,8 +791,6 @@
           <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4 L58 42 L96 50 L58 58 L50 96 L42 58 L4 50 L42 42Z" fill="#e3b55c"/></svg>
           Presepe Vivente di Pisciotta
         </a>
-        <!-- MODIFICA: inserite un contatto ufficiale (non numeri privati di volontari) oppure eliminate la riga -->
-        <p>Informazioni: <a href="mailto:[EMAIL]">[EMAIL]</a></p>
         <p style="opacity: .7;">© 2026 · Presepe Vivente di Pisciotta</p>
       </div>
     </div>
@@ -859,7 +884,7 @@
     const caso = () => { seme = (seme * 1664525 + 1013904223) % 4294967296; return seme / 4294967296; };
 
     el('defs', {}).innerHTML = `
-      <linearGradient id="g-mare" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a2a50"/><stop offset="1" stop-color="#0a1226"/></linearGradient>
+      <linearGradient id="g-mare" gradientUnits="userSpaceOnUse" x1="0" y1="748" x2="0" y2="900"><stop offset="0" stop-color="#1a2a50"/><stop offset="1" stop-color="#0a1226"/></linearGradient>
       <radialGradient id="g-luce"><stop offset="0" stop-color="#ffc56b" stop-opacity=".5"/><stop offset="1" stop-color="#ffc56b" stop-opacity="0"/></radialGradient>
       <radialGradient id="g-lampione"><stop offset="0" stop-color="#fff6dc" stop-opacity=".95"/><stop offset=".25" stop-color="#ffcf7a" stop-opacity=".45"/><stop offset="1" stop-color="#ffcf7a" stop-opacity="0"/></radialGradient>
       <linearGradient id="g-pietra" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6a85e"/><stop offset=".55" stop-color="#a86c38"/><stop offset="1" stop-color="#4f3322"/></linearGradient>
@@ -872,6 +897,20 @@
       const y = 756 + caso() * 110, x = 20 + caso() * 520, w = 8 + caso() * 36;
       el('rect', { x: x.toFixed(1), y: y.toFixed(1), width: w.toFixed(1), height: 1.4, rx: .7, fill: '#f3d08a', class: 'riflesso', style: `animation-delay:${(caso() * 3.5).toFixed(2)}s` });
     }
+
+    // --- Prolungamenti ai lati: su schermi molto larghi mare e colline continuano oltre il disegno ---
+    el('rect', { x: -1600, y: 748, width: 1612, height: 160, fill: 'url(#g-mare)' });
+    for (let k = 0; k < 40; k++) {
+      const x = -1560 + k * 38 + (k * 53 % 17), y = 760 + (k * 37 % 100);
+      el('rect', { x, y, width: 10 + (k * 29 % 30), height: 1.4, rx: .7, fill: '#f3d08a', class: 'riflesso', style: `animation-delay:${(k * .37 % 3.5).toFixed(2)}s` });
+    }
+    let dl = 'M1428 900 L1428 578';
+    for (let x = 1440; x <= 3040; x += 40) dl += ` L${x} ${(584 + 30 * Math.sin((x - 1440) / 260) + (x - 1440) * .02).toFixed(1)}`;
+    el('path', { d: dl + ' L3040 900Z', fill: '#0f192d' });
+    for (let k = 0; k < 40; k++) el('circle', { cx: 1460 + k * 40 + (k * 31 % 23), cy: 630 + (k * 47 % 110), r: 3 + (k * 13 % 5), fill: '#121d32', opacity: .8 });
+    let dc = 'M1425 905 L1425 752';
+    for (let x = 1440; x <= 3040; x += 40) dc += ` L${x} ${Math.min(840, 753 + (x - 1440) * .06).toFixed(1)}`;
+    el('path', { d: dc + ' L3040 905Z', fill: '#0a111f' });
 
     // --- La collina di ulivi alle spalle, che sale verso destra ---
     let d = 'M680 900 L680 806';
@@ -1009,6 +1048,17 @@
         .forEach(([a, b, r]) => el('ellipse', { cx: a, cy: b, rx: r, ry: r * .72 }, g));
     }
     ulivo(120, 884, 1); ulivo(290, 878, .72); ulivo(1200, 880, .8); ulivo(1360, 876, 1.05);
+    el('rect', { x: -1600, y: 864, width: 1610, height: 41, fill: '#04080f' });
+    el('rect', { x: 1430, y: 860, width: 1610, height: 45, fill: '#04080f' });
+    ulivo(-160, 880, .9); ulivo(-420, 884, 1.1); ulivo(-700, 878, .75); ulivo(1580, 878, .9); ulivo(1800, 882, 1.15); ulivo(2080, 876, .8);
+
+    // Il borgo resta sempre intero: si adatta all'altezza disponibile e, se lo schermo è largo, si allargano solo i lati
+    const adatta = () => {
+      const r = svg.getBoundingClientRect();
+      svg.setAttribute('preserveAspectRatio', r.width / r.height > 1440 / 380 ? 'xMidYMax meet' : 'xMidYMax slice');
+    };
+    adatta();
+    if ('ResizeObserver' in window) new ResizeObserver(adatta).observe(svg); else window.addEventListener('resize', adatta);
   })();
 
   /* ---------- Cielo stellato animato ---------- */
@@ -1046,6 +1096,43 @@
       }).observe($('.hero'));
       requestAnimationFrame(disegna);
     }
+  })();
+
+  /* ---------- Foto a schermo intero ---------- */
+  (function () {
+    const lb = $('#lightbox'), img = $('img', lb), testo = $('.didascalia span', lb);
+    let i = 0, ultimoFocus = null;
+    const figure = () => $$('#galleria figure');
+    function mostra(n) {
+      const lista = figure(); if (!lista.length) return;
+      i = (n + lista.length) % lista.length;
+      const f = lista[i];
+      img.src = $('img', f).src; img.alt = $('img', f).alt;
+      testo.textContent = $('figcaption', f)?.textContent || '';
+    }
+    function apri(n) { ultimoFocus = document.activeElement; mostra(n); lb.classList.add('aperta'); document.body.style.overflow = 'hidden'; $('.chiudi', lb).focus(); }
+    function chiudi() { lb.classList.remove('aperta'); document.body.style.overflow = ''; ultimoFocus?.focus(); }
+    $('#galleria')?.addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      apri(figure().indexOf(b.closest('figure')));
+    });
+    $('.chiudi', lb).addEventListener('click', chiudi);
+    $('.prec', lb).addEventListener('click', () => mostra(i - 1));
+    $('.succ', lb).addEventListener('click', () => mostra(i + 1));
+    lb.addEventListener('click', e => { if (e.target === lb) chiudi(); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('aperta')) return;
+      if (e.key === 'Escape') chiudi();
+      if (e.key === 'ArrowLeft') mostra(i - 1);
+      if (e.key === 'ArrowRight') mostra(i + 1);
+    });
+    let x0 = null;
+    lb.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 50) mostra(i + (dx < 0 ? 1 : -1));
+    });
   })();
 
   /* ---------- Barre che compaiono scorrendo ---------- */
