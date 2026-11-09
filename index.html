@@ -248,7 +248,16 @@
 
     /* ---------- Date e turni ---------- */
 
-    .serate { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 300px)); justify-content: center; gap: 18px; margin-bottom: 40px; }
+    .serate { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 300px)); justify-content: center; gap: 18px; margin-bottom: 40px; }
+    @media (max-width: 560px) { .serate { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; } .serata { padding: 22px 10px 20px; } }
+    a.serata { display: block; text-decoration: none; color: inherit; transition: transform .25s, box-shadow .25s; }
+    a.serata:hover, a.serata:focus-visible { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(12,20,41,.2); }
+    a.serata:focus-visible { outline: 2px solid var(--oro); outline-offset: 3px; }
+    .serata .azione {
+      display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 9px 18px; border-radius: 999px;
+      background: linear-gradient(180deg, var(--oro-chiaro), var(--oro)); color: var(--notte); font-weight: 600; font-size: .92rem;
+    }
+    .serata .azione.attesa { background: var(--crema-2); color: var(--testo-2); font-weight: 500; font-size: .82rem; }
     .serata {
       background: #fff; border-radius: var(--raggio); padding: 28px 22px; text-align: center;
       box-shadow: var(--ombra); border-top: 3px solid var(--oro);
@@ -456,8 +465,21 @@
      ===================================================================== -->
 <script>
   const CONFIG = {
-    // Link dell'evento su Ticket Tailor. Finché è vuoto, i pulsanti mostrano "Prenotazioni aperte a breve".
+    // Link generale dell'evento su Ticket Tailor.
+    // Finché tutti i link sono vuoti, i pulsanti mostrano "Prenotazioni aperte a breve".
     linkPrenotazione: "",
+
+    // Link di ogni singola giornata, se Ticket Tailor ne dà uno per giorno.
+    // Se restano vuoti, i riquadri dei giorni usano il link generale qui sopra.
+    linkPerGiorno: {
+      "2026-12-27": "",
+      "2026-12-28": "",
+    },
+
+    // Dove porta il pulsante "Prenota" della copertina (e del menu):
+    //   "date"   = scende alla sezione Date e orari, dove si sceglie il giorno
+    //   "ticket" = va direttamente a Ticket Tailor (serve il link generale)
+    pulsanteCopertina: "date",
 
     // Le serate, nel formato ANNO-MESE-GIORNO. Esempio: ["2026-12-27", "2026-12-28"]
     date: ["2026-12-27", "2026-12-28"],
@@ -491,12 +513,12 @@
       Presepe Vivente
     </a>
     <nav>
-      <a href="#prenota">Come prenotare</a>
       <a href="#date">Date e orari</a>
+      <a href="#prenota">Come prenotare</a>
       <a href="#arrivare">Punto di ritrovo</a>
       <a href="#percorso">Il percorso</a>
       <a href="#domande">Domande</a>
-      <a class="pulsante pulsante-oro js-prenota" href="#prenota"><span class="js-etichetta">Prenota</span></a>
+      <a class="pulsante pulsante-oro js-prenota" href="#date"><span class="js-etichetta">Prenota</span></a>
     </nav>
   </header>
 
@@ -525,13 +547,37 @@
         <span class="gratis">Ingresso gratuito</span>
       </p>
       <div class="azioni">
-        <a class="pulsante pulsante-oro js-prenota" href="#prenota"><span class="js-etichetta">Prenota il tuo turno</span></a>
+        <a class="pulsante pulsante-oro js-prenota" href="#date"><span class="js-etichetta">Prenota il tuo turno</span></a>
       </div>
     </div>
-    <a class="scorri" href="#prenota" aria-label="Scorri verso il basso"></a>
+    <a class="scorri" href="#date" aria-label="Scorri verso il basso"></a>
   </section>
 
   <main>
+
+    <!-- ===================== DATE E TURNI ===================== -->
+    <section id="date">
+      <div class="contenitore">
+        <div class="centrato appare">
+          <p class="occhiello">Calendario</p>
+          <h2 class="titolo-sezione">Date e orari</h2>
+          <p class="intro-sezione" id="date-suggerimento" style="margin-bottom: 34px;">Le prenotazioni apriranno a breve.</p>
+        </div>
+
+        <!-- Le schede delle serate vengono create dallo script con le date della CONFIGURAZIONE -->
+        <div class="serate appare" id="serate">
+          <div class="serata vuota"><div class="giorno-sett">Presto</div><div class="giorno">Date in arrivo</div></div>
+        </div>
+
+        <div class="turni-box appare">
+          <div>
+            <h3>Orari di partenza</h3>
+            <p>Un turno ogni <span data-cfg="minutiTraTurni">30</span> minuti, uguale per tutte le serate.</p>
+          </div>
+          <div class="turni" id="turni"></div>
+        </div>
+      </div>
+    </section>
 
     <!-- ===================== COME PRENOTARE ===================== -->
     <section id="prenota" style="background: var(--crema-2);">
@@ -568,29 +614,6 @@
         <div class="disdetta appare">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
           <p><strong>Non puoi più venire?</strong> Disdici dal link che trovi nell'email di conferma: libererai il posto per un'altra famiglia.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== DATE E TURNI ===================== -->
-    <section id="date">
-      <div class="contenitore">
-        <div class="centrato appare">
-          <p class="occhiello">Calendario</p>
-          <h2 class="titolo-sezione" style="margin-bottom: 40px;">Date e orari</h2>
-        </div>
-
-        <!-- Le schede delle serate vengono create dallo script con le date della CONFIGURAZIONE -->
-        <div class="serate appare" id="serate">
-          <div class="serata vuota"><div class="giorno-sett">Presto</div><div class="giorno">Date in arrivo</div></div>
-        </div>
-
-        <div class="turni-box appare">
-          <div>
-            <h3>Orari di partenza</h3>
-            <p>Un turno ogni <span data-cfg="minutiTraTurni">30</span> minuti, uguale per tutte le serate.</p>
-          </div>
-          <div class="turni" id="turni"></div>
         </div>
       </div>
     </section>
@@ -803,7 +826,7 @@
   </footer>
 
   <div class="barra-mobile" id="barra-mobile">
-    <a class="pulsante pulsante-oro js-prenota" href="#prenota"><span class="js-etichetta">Prenota il tuo turno</span></a>
+    <a class="pulsante pulsante-oro js-prenota" href="#date"><span class="js-etichetta">Prenota il tuo turno</span></a>
   </div>
 
 <script>
@@ -824,13 +847,16 @@
   });
 
   /* ---------- Pulsanti di prenotazione ---------- */
-  const linkPronto = /^https?:\/\//.test(CONFIG.linkPrenotazione.trim());
+  const valido = l => typeof l === 'string' && /^https?:\/\//.test(l.trim()) ? l.trim() : '';
+  const linkGenerale = valido(CONFIG.linkPrenotazione);
+  const linkGiorno = iso => valido((CONFIG.linkPerGiorno || {})[iso]) || linkGenerale;
+  const linkPronto = !!linkGenerale || CONFIG.date.some(iso => linkGiorno(iso));
   if (!linkPronto) $('#barra-mobile').remove();
   $$('.js-prenota').forEach(a => {
     if (linkPronto) {
-      a.href = CONFIG.linkPrenotazione.trim();
+      a.href = (CONFIG.pulsanteCopertina === 'ticket' && linkGenerale) ? linkGenerale : '#date';
     } else {
-      a.href = '#prenota';
+      a.href = '#date';
       a.classList.add('in-attesa');
       a.classList.remove('pulsante-oro');
       const e = a.querySelector('.js-etichetta');
@@ -840,7 +866,7 @@
 
   /* ---------- Date ---------- */
   const serate = CONFIG.date
-    .map(d => new Date(d + 'T00:00:00'))
+    .map(iso => Object.assign(new Date(iso + 'T00:00:00'), { iso }))
     .filter(d => !isNaN(d))
     .sort((a, b) => a - b);
 
@@ -859,13 +885,21 @@
   $('#date-copertina').textContent = testoDate(serate);
 
   if (serate.length) {
-    $('#serate').innerHTML = serate.map(d => `
-      <div class="serata">
+    $('#serate').innerHTML = serate.map(d => {
+      const link = linkGiorno(d.iso);
+      const dentro = `
         <div class="giorno-sett">${d.toLocaleDateString('it-IT', { weekday: 'long' })}</div>
         <div class="giorno">${d.getDate()}</div>
         <div class="mese">${mese(d)} ${d.getFullYear()}</div>
-      </div>`).join('');
+        ${link ? '<span class="azione">Prenota ›</span>' : '<span class="azione attesa">A breve</span>'}`;
+      return link
+        ? `<a class="serata" href="${link}" aria-label="Prenota per il ${d.getDate()} ${mese(d)}">${dentro}</a>`
+        : `<div class="serata">${dentro}</div>`;
+    }).join('');
   }
+  $('#date-suggerimento').textContent = linkPronto
+    ? 'Tocca il giorno in cui vuoi venire per prenotare il tuo turno.'
+    : 'Le prenotazioni apriranno a breve.';
 
   /* ---------- Orari dei turni ---------- */
   const inMinuti = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
@@ -1142,10 +1176,14 @@
   })();
 
   /* ---------- Barre che compaiono scorrendo ---------- */
-  new IntersectionObserver(([e]) => {
-    $('#barra').classList.toggle('visibile', !e.isIntersecting);
-    $('#barra-mobile')?.classList.toggle('visibile', !e.isIntersecting);
-  }, { threshold: .08 }).observe($('.hero'));
+  let heroVisibile = true, dateVisibili = false;
+  const aggiornaBarre = () => {
+    $('#barra').classList.toggle('visibile', !heroVisibile);
+    // su telefono la barra "Prenota" sparisce anche sulla sezione delle date, dove i giorni sono già pulsanti
+    $('#barra-mobile')?.classList.toggle('visibile', !heroVisibile && !dateVisibili);
+  };
+  new IntersectionObserver(([e]) => { heroVisibile = e.isIntersecting; aggiornaBarre(); }, { threshold: .08 }).observe($('.hero'));
+  new IntersectionObserver(([e]) => { dateVisibili = e.isIntersecting; aggiornaBarre(); }, { threshold: .05 }).observe($('#date'));
 
   /* ---------- Comparsa morbida delle sezioni ---------- */
   if (document.documentElement.classList.contains('anima')) {
