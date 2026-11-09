@@ -115,7 +115,40 @@
     .barra nav a:not(.pulsante) { color: #d6cfc2; text-decoration: none; font-size: .92rem; }
     .barra nav a:not(.pulsante):hover { color: var(--oro-chiaro); }
     .barra .pulsante { padding: 9px 20px; font-size: .9rem; box-shadow: none; }
-    @media (max-width: 820px) { .barra nav a:not(.pulsante) { display: none; } }
+    @media (max-width: 820px) { .barra nav a:not(.pulsante) { display: none; } .barra nav { gap: 10px; } }
+
+    /* Menu a tendina su telefono */
+    .menu-btn {
+      display: none; position: relative; width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
+      background: transparent; border: 1px solid rgba(255,255,255,.28); padding: 0;
+    }
+    .menu-btn span {
+      position: absolute; left: 12px; right: 12px; height: 2px; border-radius: 2px; background: #f3ead8;
+      transition: transform .3s, opacity .2s;
+    }
+    .menu-btn span:nth-child(1) { top: 14px; }
+    .menu-btn span:nth-child(2) { top: 20px; }
+    .menu-btn span:nth-child(3) { top: 26px; }
+    .barra.menu-aperto .menu-btn span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .barra.menu-aperto .menu-btn span:nth-child(2) { opacity: 0; }
+    .barra.menu-aperto .menu-btn span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .menu-mobile {
+      position: absolute; top: 100%; left: 0; right: 0; display: none;
+      background: var(--notte);
+      padding: 6px clamp(16px, 4vw, 40px) 16px; border-top: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 18px 40px rgba(0,0,0,.4);
+    }
+    .menu-mobile a {
+      display: flex; justify-content: space-between; align-items: center; padding: 15px 2px;
+      color: #ece4d4; text-decoration: none; font-size: 1.05rem; border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .menu-mobile a:last-child { border-bottom: 0; }
+    .menu-mobile a::after { content: "›"; color: var(--oro); font-size: 1.3rem; }
+    .menu-mobile a:active, .menu-mobile a:hover { color: var(--oro-chiaro); }
+    @media (max-width: 820px) {
+      .menu-btn { display: block; }
+      .barra.menu-aperto .menu-mobile { display: block; }
+    }
 
     /* ---------- Copertina (hero) ---------- */
     .hero {
@@ -516,10 +549,17 @@
       <a href="#date">Date e orari</a>
       <a href="#prenota">Come prenotare</a>
       <a href="#arrivare">Punto di ritrovo</a>
+      <a href="#presepe">Il presepe</a>
       <a href="#percorso">Il percorso</a>
       <a href="#domande">Domande</a>
       <a class="pulsante pulsante-oro js-prenota" href="#date"><span class="js-etichetta">Prenota</span></a>
+      <!-- Pulsante menu: compare solo su telefono e tablet -->
+      <button type="button" class="menu-btn" id="menu-btn" aria-label="Apri il menu" aria-expanded="false" aria-controls="menu-mobile">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
+    <!-- Elenco delle sezioni su telefono: viene riempito dallo script con le stesse voci del menu del computer -->
+    <div class="menu-mobile" id="menu-mobile"></div>
   </header>
 
   <!-- ===================== COPERTINA ===================== -->
@@ -858,6 +898,23 @@
   const menoMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   window.addEventListener('load', controllaGalleria);
+
+  /* ---------- Menu a tendina su telefono ---------- */
+  const barra = $('#barra'), menuBtn = $('#menu-btn'), menu = $('#menu-mobile');
+  $$('.barra nav a:not(.pulsante)').forEach(a => menu.appendChild(a.cloneNode(true)));
+  function chiudiMenu() {
+    barra.classList.remove('menu-aperto');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.setAttribute('aria-label', 'Apri il menu');
+  }
+  menuBtn.addEventListener('click', () => {
+    const aperto = barra.classList.toggle('menu-aperto');
+    menuBtn.setAttribute('aria-expanded', String(aperto));
+    menuBtn.setAttribute('aria-label', aperto ? 'Chiudi il menu' : 'Apri il menu');
+  });
+  menu.addEventListener('click', e => { if (e.target.closest('a')) chiudiMenu(); });
+  document.addEventListener('click', e => { if (!barra.contains(e.target)) chiudiMenu(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') chiudiMenu(); });
 
   /* ---------- Valori dalla configurazione ---------- */
   $$('[data-cfg]').forEach(el => {
@@ -1198,6 +1255,7 @@
   let heroVisibile = true, dateVisibili = false;
   const aggiornaBarre = () => {
     $('#barra').classList.toggle('visibile', !heroVisibile);
+    if (heroVisibile) chiudiMenu();
     // su telefono la barra "Prenota" sparisce anche sulla sezione delle date, dove i giorni sono già pulsanti
     $('#barra-mobile')?.classList.toggle('visibile', !heroVisibile && !dateVisibili);
   };
