@@ -144,9 +144,10 @@
     }
     .hero h1 em { display: block; font-style: italic; font-weight: 500; color: var(--oro-chiaro); font-size: .5em; margin-top: 8px; letter-spacing: .01em; }
     
-    .info-hero { margin: 22px 0 22px; }
-    .info-hero .quando { display: block; font-family: var(--serif); font-size: clamp(1.45rem, 3.6vw, 1.8rem); font-weight: 600; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.6); }
-    .info-hero .gratis { display: inline-flex; align-items: center; gap: 10px; margin-top: 6px; font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; color: var(--oro-chiaro); }
+    .info-hero { margin: 18px 0 22px; }
+    .info-hero .quando { display: block; font-family: var(--serif); font-size: clamp(2.2rem, 7.5vw, 3.4rem); line-height: 1.05; font-weight: 600; color: #fff; text-shadow: 0 2px 16px rgba(0,0,0,.6); }
+    .info-hero .luogo { display: block; margin-top: 6px; font-family: var(--serif); font-style: italic; font-size: clamp(1.15rem, 3.4vw, 1.45rem); color: #e7dfd0; text-shadow: 0 2px 12px rgba(0,0,0,.6); }
+    .info-hero .gratis { display: inline-flex; align-items: center; gap: 10px; margin-top: 12px; font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; color: var(--oro-chiaro); }
     .info-hero .gratis::before, .info-hero .gratis::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .6; }
     .hero .azioni { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 28px; }
 
@@ -520,6 +521,7 @@
       <h1>Presepe Vivente<em>Cchi prisepi sta Pisciotta</em></h1>
       <p class="info-hero">
         <span class="quando" id="date-copertina">Date in arrivo</span>
+        <span class="luogo">Centro storico di Pisciotta</span>
         <span class="gratis">Ingresso gratuito</span>
       </p>
       <div class="azioni">
@@ -537,13 +539,13 @@
         <div class="centrato appare">
           <p class="occhiello">Prenotazioni</p>
           <h2 class="titolo-sezione">Prenotare è semplice e gratuito</h2>
-          <p class="intro-sezione">L'ingresso è gratuito: prenotare serve solo a riservare il tuo posto nel turno che preferisci.</p>
+          <p class="intro-sezione">L'ingresso al presepe è gratuito: prenotare ti permette di riservarti un posto nel turno che preferisci.</p>
         </div>
 
         <div class="passi">
-          <div class="passo appare"><h3>Scegli il turno</h3><p>Seleziona la serata e l'orario che preferisci: vedi subito quanti posti sono ancora liberi.</p></div>
-          <div class="passo appare"><h3>Inserisci i dati</h3><p>Nome, email e numero di persone del tuo gruppo. Non serve registrarsi.</p></div>
-          <div class="passo appare"><h3>Ricevi la conferma</h3><p>Ti arriva un'email con la prenotazione e le istruzioni: mostrala dal telefono all'ingresso.</p></div>
+          <div class="passo appare"><h3>Scegli il turno</h3><p>Seleziona il giorno e l'orario che preferisci: vedi quanti posti sono ancora disponibili.</p></div>
+          <div class="passo appare"><h3>Inserisci i dati</h3><p>Nome, email e numero di persone.</p></div>
+          <div class="passo appare"><h3>Ricevi la conferma</h3><p>Una volta inseriti i dati, ti arriverà un'email con i dettagli della prenotazione e tutte le istruzioni. Ricorda di mostrare la tua prenotazione all'ingresso.</p></div>
         </div>
 
         <div class="avviso appare">
@@ -553,12 +555,12 @@
           <div>
             <h3>Arriva con un po' di anticipo</h3>
             <p>
-              Presentati in <strong>Piazza Raffaele Pinto almeno <span data-cfg="minutiAnticipo">15</span> minuti prima</strong>
-              dell'orario prenotato.
+              Ricorda di presentarti all'ingresso dell'evento in <strong>Piazza R. e B. Pinto almeno
+              <span data-cfg="minutiAnticipo">15</span> minuti prima</strong> dell'orario scelto.
             </p>
             <p>
-              I turni partono puntuali: se all'orario del tuo turno non sei presente, <strong>perdi la priorità
-              della prenotazione</strong> e potrai entrare solo mettendoti in coda con chi arriva senza prenotare.
+              Se non sei presente al momento della partenza del turno selezionato, <strong>perderai la priorità
+              della prenotazione</strong> e potrai entrare mettendoti in coda con chi non ha prenotato.
             </p>
           </div>
         </div>
@@ -598,15 +600,16 @@
       <div class="contenitore griglia">
         <div class="appare">
           <p class="occhiello">Come arrivare</p>
-          <h2 class="titolo-sezione">Ci vediamo in piazza</h2>
+          <h2 class="titolo-sezione">Dove trovarci</h2>
           <p class="intro-sezione" style="margin-bottom: 0;">
-            Tutti i turni partono da Piazza Raffaele Pinto. Arriva con qualche minuto di anticipo:
-            da lì inizia il viaggio nella Betlemme di Pisciotta.
+            Il punto di ritrovo e di partenza è Piazza Raffaele e Biagio Pinto, a Pisciotta:
+            da lì inizia il viaggio di Giuseppe e Maria, che proseguirà nel cuore del borgo,
+            il suggestivo centro storico.
           </p>
         </div>
         <div class="ritrovo appare">
           <div class="etichetta">Punto di ritrovo</div>
-          <h3>Piazza Raffaele Pinto</h3>
+          <h3>Piazza Raffaele e Biagio Pinto</h3>
           <p>Pisciotta (SA) · presentati almeno <span data-cfg="minutiAnticipo">15</span> minuti prima del tuo turno.</p>
           <a class="pulsante pulsante-oro" href="https://www.google.com/maps/search/?api=1&query=Piazza+Raffaele+Pinto%2C+Pisciotta+SA" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
@@ -621,15 +624,17 @@
       <div class="contenitore griglia">
         <div class="appare">
           <p class="occhiello">Scopri il presepe</p>
-          <h2 class="titolo-sezione">Una notte a Betlemme</h2>
+          <h2 class="titolo-sezione">Segui la stella</h2>
           <p>
-            Tra i vicoli, le scalinate e le piazzette del centro storico, Pisciotta torna indietro
-            di duemila anni. Le scene della Natività prendono vita <strong>tra canti e musica</strong>:
-            un racconto da ascoltare, oltre che da guardare.
+            Tra i suggestivi vicoli, palazzi storici e piazzette del centro storico, Pisciotta torna
+            indietro di 2000 anni, fino al momento della nascita di Gesù.
           </p>
           <p>
-            Un'emozione costruita con passione da tutto il paese: figuranti, artigiani e volontari
-            che ogni anno danno vita alla tradizione.
+            Le scene della Natività prendono vita <strong>tra canti e musica</strong>: un racconto da
+            ascoltare, ma soprattutto da vivere.
+          </p>
+          <p>
+            Quasi <strong>100 figuranti</strong> danno vita e voce alla storia d'amore più bella di tutti i tempi.
           </p>
           <ul class="punti">
             <li>
@@ -670,9 +675,10 @@
           <p class="occhiello">Il percorso</p>
           <h2 class="titolo-sezione">Un cammino in musica verso la grotta</h2>
           <p class="intro-sezione">
-            Un percorso a piedi tra le vie del borgo, di circa <span data-cfg="durataMinuti">50</span> minuti.
-            In ogni scena i figuranti raccontano cantando: la storia della Natività
-            si ascolta, tappa dopo tappa, come un'unica grande storia in musica.
+            Un affascinante viaggio attraverso le suggestive vie del centro storico, dove ogni angolo
+            si trasformerà in un palcoscenico di emozioni. Un percorso animato da scene coinvolgenti,
+            intense e ricche di passione, capace di intrecciare storia, tradizione e magia,
+            avvolgendo i presenti in un'atmosfera unica e suggestiva.
           </p>
         </div>
 
@@ -692,7 +698,7 @@
           </li>
           <li class="tappa appare">
             <div class="numero">4</div>
-            <div><h3>I pastori</h3><p>Accanto al fuoco, i pastori ricevono l'annuncio e si mettono in cammino cantando.</p></div>
+            <div><h3>I pastori e i Re Magi</h3><p>Accanto al fuoco, i pastori ricevono l'annuncio e si mettono in cammino cantando, mentre i Re Magi seguono la stella con i loro doni.</p></div>
           </li>
           <li class="tappa finale appare">
             <div class="numero">✦</div>
@@ -747,7 +753,7 @@
         </details>
         <details>
           <summary>Cosa succede se arrivo in ritardo?</summary>
-          <p>I turni partono all'orario stabilito. Se non sei presente alla partenza perdi la priorità della prenotazione e potrai entrare in coda con chi è arrivato senza prenotare, nel primo turno con posti liberi.</p>
+          <p>I turni partono all'orario stabilito. Se non sei presente alla partenza del tuo turno perderai la priorità della prenotazione e potrai entrare mettendoti in coda con chi non ha prenotato.</p>
         </details>
         <details>
           <summary>Come faccio a disdire?</summary>
