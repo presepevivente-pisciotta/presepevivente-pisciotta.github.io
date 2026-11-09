@@ -835,6 +835,25 @@
      =================================================================== */
 
   const $ = (s, el = document) => el.querySelector(s);
+
+  /* ---------- Il sito si apre sempre dalla copertina ----------
+     Anche se il link condiviso contiene #date o #prenota, o se il browser ricorda dove eri arrivato. */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  window.scrollTo(0, 0);
+  window.addEventListener('load', () => window.scrollTo(0, 0));
+
+  /* I pulsanti interni (Prenota, menu…) scorrono alla sezione senza aggiungere #… all'indirizzo,
+     così il link copiato dalla barra del browser resta sempre quello pulito. */
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey) return;
+    const id = a.getAttribute('href').slice(1);
+    const destinazione = id ? document.getElementById(id) : null;
+    if (!destinazione) return;
+    e.preventDefault();
+    destinazione.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  });
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const menoMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
