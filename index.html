@@ -420,6 +420,9 @@
     .ritrovo .etichetta { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--oro); font-weight: 600; }
     .ritrovo h3 { color: #fff; font-size: 2.1rem; margin: 8px 0 12px; }
     .ritrovo p { color: #cfc7b9; margin: 0 0 22px; }
+    .ritrovo p:has(+ .maps-nota) { margin-bottom: 8px; }
+    .ritrovo .maps-nota { font-size: .92rem; color: #b9b2a6; }
+    .ritrovo .maps-nota strong { color: var(--oro-chiaro); font-weight: 600; }
     @media (max-width: 760px) { .arrivare .griglia { grid-template-columns: 1fr; } }
 
     /* ---------- Piè di pagina ---------- */
@@ -500,7 +503,7 @@
   const CONFIG = {
     // Link generale dell'evento su Ticket Tailor.
     // Finché tutti i link sono vuoti, i pulsanti mostrano "Prenotazioni aperte a breve".
-    linkPrenotazione: "",
+    linkPrenotazione: "https://buytickets.at/presepeviventedipisciotta/2523423",   // EVENTO DI PROVA
 
     // Link di ogni singola giornata, se Ticket Tailor ne dà uno per giorno.
     // Se restano vuoti, i riquadri dei giorni usano il link generale qui sopra.
@@ -674,7 +677,8 @@
           <div class="etichetta">Punto di ritrovo</div>
           <h3>Piazza Raffaele e Biagio Pinto</h3>
           <p>Pisciotta (SA) · presentati almeno <span data-cfg="minutiAnticipo">15</span> minuti prima del tuo turno.</p>
-          <a class="pulsante pulsante-oro" href="https://www.google.com/maps/search/?api=1&query=Piazza+Raffaele+Pinto%2C+Pisciotta+SA" target="_blank" rel="noopener">
+          <p class="maps-nota">Su Google Maps la trovi come <strong style="white-space: nowrap">«P.za R. Pinto»</strong>.</p>
+          <a class="pulsante pulsante-oro" href="https://www.google.com/maps/search/?api=1&query=P.za+R.+Pinto%2C+84066+Pisciotta+SA" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
             Apri in Google Maps
           </a>
