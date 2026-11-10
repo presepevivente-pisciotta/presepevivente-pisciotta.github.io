@@ -512,7 +512,8 @@
       "2026-12-28": "",
     },
 
-    // Dove porta il pulsante "Prenota" della copertina (e del menu):
+    // Dove porta il pulsante "Prenota" della copertina
+    // (i pulsanti "Prenota" che compaiono scorrendo vanno sempre al link generale):
     //   "date"   = scende alla sezione Date e orari, dove si sceglie il giorno
     //   "ticket" = va direttamente a Ticket Tailor (serve il link generale)
     pulsanteCopertina: "date",
@@ -934,7 +935,10 @@
   if (!linkPronto) $('#barra-mobile').remove();
   $$('.js-prenota').forEach(a => {
     if (linkPronto) {
-      a.href = (CONFIG.pulsanteCopertina === 'ticket' && linkGenerale) ? linkGenerale : '#date';
+      // I pulsanti "Prenota" che compaiono scorrendo (barra in alto e barra in basso su telefono)
+      // portano direttamente a Ticket Tailor; quello della copertina segue pulsanteCopertina.
+      const scorrendo = a.closest('#barra, #barra-mobile');
+      a.href = linkGenerale && (scorrendo || CONFIG.pulsanteCopertina === 'ticket') ? linkGenerale : '#date';
     } else {
       a.href = '#date';
       a.classList.add('in-attesa');
