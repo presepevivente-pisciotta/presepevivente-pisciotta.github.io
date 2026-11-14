@@ -533,6 +533,10 @@
     // Da quando compare la sezione "Com'è andata?" con il link alla pagina delle recensioni
     // (formato ANNO-MESE-GIORNOTORA:MINUTI). Prima di questa data la sezione e la voce del menu non si vedono.
     recensioniDal: "2026-11-14T00:00",   // PER LE PROVE: per il presepe rimettere "2026-12-27T17:30"
+
+    // Link del Google Modulo per le recensioni: il pulsante "Lascia la tua opinione" lo apre direttamente.
+    // Se è vuoto, il pulsante porta alla pagina recensioni.html.
+    linkModulo: "https://docs.google.com/forms/d/e/1FAIpQLSfm7ogASJHFqExFFbN-JyHFwVbB7o_z1LC-xIIyjU9KPOOyLw/viewform",
   };
 
   // (non modificare) Le sezioni compaiono con un'animazione solo se il browser la supporta
@@ -929,7 +933,10 @@
   (function () {
     const dal = new Date(CONFIG.recensioniDal || '');
     const visibile = !isNaN(dal) && new Date() >= dal;
-    if (visibile) $('#recensioni').hidden = false;
+    if (visibile) {
+      $('#recensioni').hidden = false;
+      if (CONFIG.linkModulo) $('#recensioni .pulsante').href = CONFIG.linkModulo.split('?')[0];
+    }
     else { $('#recensioni').remove(); $$('.js-recensioni').forEach(a => a.remove()); }
   })();
 
