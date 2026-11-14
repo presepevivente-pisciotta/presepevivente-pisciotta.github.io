@@ -439,6 +439,7 @@
       width: min(520px, 80%); height: 1px; background: linear-gradient(90deg, transparent, var(--oro), transparent);
     }
     footer a { color: var(--oro); }
+    .js-email { overflow-wrap: anywhere; }
     footer p { margin: 6px 0; }
     .piede-etichetta {
       font-size: .75rem; letter-spacing: .24em; text-transform: uppercase; font-weight: 600; color: var(--oro); margin: 0 0 18px;
@@ -533,6 +534,12 @@
     // Da quando compare la sezione "Com'è andata?" con il link alla pagina delle recensioni
     // (formato ANNO-MESE-GIORNOTORA:MINUTI). Prima di questa data la sezione e la voce del menu non si vedono.
     recensioniDal: "2026-11-14T00:00",   // PER LE PROVE: per il presepe rimettere "2026-12-27T17:30"
+
+    // Email dell'organizzazione, scritta in due pezzi (prima e dopo la @) per non farla trovare ai programmi di spam.
+    // Esempio: per presepe@gmail.com scrivere emailNome: "presepe", emailDominio: "gmail.com".
+    // Se restano vuoti, i contatti nel footer e la domanda sul numero di persone non compaiono.
+    emailNome: "gruppogiovanipisciotta",
+    emailDominio: "gmail.com",
 
     // Link del Google Modulo per le recensioni: il pulsante "Lascia la tua opinione" lo apre direttamente.
     // Se è vuoto, il pulsante porta alla pagina recensioni.html.
@@ -852,6 +859,10 @@
           <summary>Come faccio a disdire?</summary>
           <p>Usa il link nell'email di conferma. Disdire è importante: il tuo posto torna disponibile per un'altra persona.</p>
         </details>
+        <details class="js-serve-email" hidden>
+          <summary>Posso cambiare il numero di persone?</summary>
+          <p>Se siete di più, fai una nuova prenotazione per le persone che mancano, nello stesso turno se ci sono ancora posti. Se siete di meno, scrivici a <a class="js-email"></a> indicando il nome con cui hai prenotato e quante persone in meno: libererai i posti per altri.</p>
+        </details>
         <details>
           <summary>Posso venire senza prenotazione?</summary>
           <p>Sì. In ogni turno alcuni posti sono riservati a chi arriva sul posto, in ordine di arrivo. Nelle serate più affollate potrebbe essere necessario attendere.</p>
@@ -890,6 +901,7 @@
           <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4 L58 42 L96 50 L58 58 L50 96 L42 58 L4 50 L42 42Z" fill="#e3b55c"/></svg>
           Presepe Vivente di Pisciotta
         </a>
+        <p class="js-serve-email" hidden>Contatti: <a class="js-email"></a></p>
         <p style="opacity: .7;">© 2026 · Presepe Vivente di Pisciotta</p>
       </div>
     </div>
@@ -928,6 +940,15 @@
   const menoMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   window.addEventListener('load', controllaGalleria);
+
+  /* ---------- Email dei contatti (footer e domanda sul numero di persone) ---------- */
+  (function () {
+    const nome = (CONFIG.emailNome || '').trim(), dominio = (CONFIG.emailDominio || '').trim();
+    if (!nome || !dominio) { $$('.js-serve-email').forEach(el => el.remove()); return; }
+    const email = nome + '@' + dominio;
+    $$('.js-email').forEach(a => { a.href = 'mailto:' + email; a.textContent = email; });
+    $$('.js-serve-email').forEach(el => { el.hidden = false; });
+  })();
 
   /* ---------- Sezione "Com'è andata?": visibile solo dalla data recensioniDal ---------- */
   (function () {
